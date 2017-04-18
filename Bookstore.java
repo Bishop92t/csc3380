@@ -85,9 +85,11 @@ public class Bookstore {
     		sc.next();
     	}
     	books = new Book[requiredBooks];
+    	
+    	//reset the scanner
     	sc.close();
-    	fr.close();
-    	fr = new FileReader(courseFile + ".txt");
+    	fr.close();	//throws IOException
+    	fr = new FileReader(courseFile + ".txt");	//throws IOException
     	sc = new Scanner(fr);
 		sc.nextLine();
     	

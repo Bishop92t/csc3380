@@ -31,8 +31,7 @@ public class Course {
      */
     public Course(String userInput) {
         if( checkIfValid(userInput) ) {
-            this.course=userInput;
-            //construct the rest of the object using the data in the file above
+            this.course = userInput;
             section = userInput.substring(userInput.length() - 1, userInput.length());	//Assuming there are no more than 9 sections per class
             FileReader fr = null; //variable must be initialized in case the try block fails (which it can't)
             //Java requires this exception to be handled even though it kind of is already
@@ -41,13 +40,12 @@ public class Course {
             } catch(FileNotFoundException e) {
             	
             }
-            Scanner sc = new Scanner(fr);	//Start scanning the file now that we know it exists
+            Scanner sc = new Scanner(fr);
             numEnrolled = sc.nextInt();
             sc.close();
         }
         else {
             Bookstore.display("No course found\nmatching " + userInput);
-        	//throw new Exception("Course not found!");
         }
     }
     

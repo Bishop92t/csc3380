@@ -36,11 +36,8 @@ public class Book {
      * @throws Exception 
      */
     public Book (String userInput) {
-    	String _DOG_USERINPUT_ = userInput;
-    	String cat = "cat";
         if ( checkIfValid(userInput) ) {
-            this.ISBN=userInput;
-            //construct the rest of the object using the data in the file above
+            ISBN = userInput;
             FileReader fr = null; //variable must be initialized in case the try block fails (which it can't)
             //Java requires this exception to be handled even though it kind of is already
             try {
@@ -57,19 +54,11 @@ public class Book {
             while(sc.hasNext()) {
             	courses[numCourses] = new Course(sc.next());
             	numCourses++;
-            	/*try {
-            		//String courseName = sc.nextLine();
-            		courses[numCourses] = new Course(sc.next());
-            		numCourses++;
-            	} catch(Exception e) {
-            		
-            	}*/
             }
             sc.close();
         }
         else {
             Bookstore.display("No book found\nmatching ISBN " + userInput);
-        	//throw new Exception("Book not found!");
         }
     }
 
