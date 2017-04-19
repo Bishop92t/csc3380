@@ -44,9 +44,8 @@ public class Course {
             numEnrolled = sc.nextInt();
             sc.close();
         }
-        else {
-            Bookstore.display("No course found\nmatching " + userInput);
-        }
+        else 
+            Bookstore.display(new String[] {"No course found matching "+userInput}, true);
     }
     
     
