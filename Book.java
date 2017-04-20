@@ -33,7 +33,6 @@ public class Book {
     /**
      * constructor for this Book object
      * @param userInput the ISBN of the Book object
-     * @throws Exception 
      */
     public Book (String userInput) {
         if ( checkIfValid(userInput) ) {

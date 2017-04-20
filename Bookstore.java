@@ -26,6 +26,7 @@ import javax.swing.JTextField;
  *      figure out why user can input invalid course and not get error
  *      figure out why an invalid ISBN throws a null pointer at Book line 77
  *      maybe expand flexibility of course input, i.e. accept it in any format
+ *      display total of order costs when a course is entered
  *                  CSC 1350 1    or    CSC1350_1   or     csc1350 1    or   CSC1350 001
  */
 
@@ -155,7 +156,6 @@ public class Bookstore {
     
     /**
      * Gets the array of books required by a course
-     * exactly as long as needed.
      * @param courseFile the file to check
      * @return length of books array
      * @throws IOException 
