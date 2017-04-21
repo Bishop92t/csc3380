@@ -51,13 +51,14 @@ public class Book {
             courses = new Course[100];		//Books can be used by a lot of courses, especially if we're separating them into sections
             numCourses = 0;
             while(sc.hasNext()) {
-            	courses[numCourses] = new Course(sc.next());
+            	courses[numCourses] = new Course(sc.next(), userInput + ".txt");
             	numCourses++;
             }
             sc.close();
         }
-        else 
-            Bookstore.display(new String[] {"No book found matching"+userInput}, true);
+        else {
+            Bookstore.display(new String[] {"No book found matching " + userInput}, true);
+        }
     }
 
     
@@ -102,7 +103,6 @@ public class Book {
     	} catch(FileNotFoundException e) {
     		return false;
     	} catch (IOException e) {
-    		//not sure what would cause this
 			e.printStackTrace();
 		}
     	return true;

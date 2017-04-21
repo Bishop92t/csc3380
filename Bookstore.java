@@ -2,6 +2,7 @@
 package bookstore;
 
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
@@ -23,11 +24,7 @@ import javax.swing.JTextField;
  * 
  *
  ***********************  TO DO LIST  **************************
- *      figure out why user can input invalid course and not get error
- *      figure out why an invalid ISBN throws a null pointer at Book line 77
- *      maybe expand flexibility of course input, i.e. accept it in any format
- *      display total of order costs when a course is entered
- *                  CSC 1350 1    or    CSC1350_1   or     csc1350 1    or   CSC1350 001
+ *	
  */
 
 public class Bookstore {
@@ -41,6 +38,7 @@ public class Bookstore {
         //setup the frame
         JFrame frame = new JFrame("Main Menu");
         frame.setSize(500, 200);
+        centerFrame(frame);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(null);
 
@@ -71,12 +69,14 @@ public class Bookstore {
                     search(true, userIn); //bring up menu for search by book
                 } catch (IOException ex) {
                     Logger.getLogger(Bookstore.class.getName()).log(Level.SEVERE, null, ex);
+                } catch(NullPointerException ex) {
+                	//the Book constructor will display a message if this happens
                 }
         };
         bookButton.addActionListener(bookButtonListener);
 
         ActionListener courseButtonListener = (ActionEvent e) -> {    //listener for course button
-            String userIn=userInput.getText().replaceAll("\\s+", ""); //delete white space
+            String userIn = Course.fixCourseName(userInput.getText().replaceAll("\\s+", "")); //delete white space & format into file name
             if(userIn.equals(""))
                 display(new String[] {"no Course inputted!", ""}, true);
             else 
@@ -100,20 +100,33 @@ public class Bookstore {
      */
     public static void search(boolean isISBN, String userInput) throws IOException {
     	Book[] books;
-    	if(!isISBN)  //user is searching by course
-            books = getRequiredBooks(userInput); //If a course was entered, set the books array
-    	else {      //else user is searching by book
+        String tab="     "; //for code readability
+        String[] bookListing;
+    	if(!isISBN) { //user is searching by course
+    		if(Course.checkIfValid(userInput)) {
+    			books = getRequiredBooks(userInput); //If a course was entered, set the books array
+    		} else {
+                Bookstore.display(new String[] {"No course found matching " + userInput}, true);
+                return;
+    		}
+    		bookListing = new String[books.length + 2]; //two extra lines: headers and total cost
+    		bookListing[0]="Book "+tab+tab+tab+tab+"In stock   "+tab+"Required  "+tab+"Need to order"+tab+"Cost of order";
+    		bookListing[books.length + 1] = "Total Order Cost:  " +tab+tab+tab+tab+tab+tab+tab+tab+tab+tab+tab+ new Course(userInput).getOrderTotal();
+    	} else {      //else user is searching by book
             books = new Book[1];
             books[0] = new Book(userInput); //If a book was entered, use only that book
+    		bookListing = new String[books.length+1]; //one extra line required for headers
+    		bookListing[0]="Book "+tab+tab+tab+tab+"In stock   "+tab+"Required  "+tab+"Need to order"+tab+"Cost of order";
     	}
-        String[] bookListing = new String[books.length+1]; //one extra line required for headers
-        String tab="     "; //for code readability
-        bookListing[0]="Book "+tab+tab+tab+tab+"In stock   "+tab+"Required  "+tab+"Need to order"+tab+"Cost of order";
+    	//if(books.length <= 1) {	//If a book was input
+    	//} else {	//else, since there are probably multiple books, we'll display the total order cost at the bottom
+    	//}
     	
         //iterate through the books[] and format the strings to be stored in bookListing[]
         for(int i=1; i<=books.length; i++) 
             bookListing[i]=formatString(books[i-1]);
         display(bookListing, false);
+        
     }    
     
     
@@ -127,6 +140,7 @@ public class Bookstore {
     public static void display(String[] textToDisplay, boolean error) {
         JFrame frame = new JFrame("Output");
         frame.setSize(800, 600);
+        centerFrame(frame);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(null);
         
@@ -261,5 +275,14 @@ public class Bookstore {
         //no need to pad order cost, just force it to 2 decimals and return the final string
         out+=String.format("%.2f",book.findOrderCost());
         return out;
+    }
+    
+    /**
+     * Centers a JFrame on the screen
+     * @param frame the window to center
+     */
+    public static void centerFrame(JFrame frame) {
+        frame.setLocation(Toolkit.getDefaultToolkit().getScreenSize().width / 2 - frame.getWidth() / 2, 
+        		Toolkit.getDefaultToolkit().getScreenSize().height / 2 - frame.getHeight() / 2);
     }
 }
