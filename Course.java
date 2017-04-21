@@ -26,8 +26,6 @@ public class Course {
     /**
      * constructor for this course object
      * @param userInput string that the user has input
-     * @param s whether the books array should be created (to stop infinite loops)
-     * @throws Exception 
      */
     public Course(String userInput) {
         if( checkIfValid(userInput) ) {
@@ -44,15 +42,9 @@ public class Course {
             numEnrolled = sc.nextInt();
             sc.close();
         }
-        else {
-            Bookstore.display("No course found\nmatching " + userInput);
-        }
+        else 
+            Bookstore.display(new String[] {"No course found matching " + userInput}, true);
     }
-    
-    
-    
-    
-    
     
     
     

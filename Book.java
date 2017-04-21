@@ -33,7 +33,6 @@ public class Book {
     /**
      * constructor for this Book object
      * @param userInput the ISBN of the Book object
-     * @throws Exception 
      */
     public Book (String userInput) {
         if ( checkIfValid(userInput) ) {
@@ -57,9 +56,8 @@ public class Book {
             }
             sc.close();
         }
-        else {
-            Bookstore.display("No book found\nmatching ISBN " + userInput);
-        }
+        else 
+            Bookstore.display(new String[] {"No book found matching"+userInput}, true);
     }
 
     
@@ -76,9 +74,9 @@ public class Book {
     public String getBookName() {
     	String s;
     	if(bookName.length() > 20) {
-    		s = bookName.substring(0, 17) + "...";
+            s = bookName.substring(0, 17) + "...";
     	} else {
-    		s = bookName;
+            s = bookName;
     	}
         return s;
     }
