@@ -1,5 +1,5 @@
 // if you're using NetBeans (maybe Eclipse) you need this line, otherwise comment it out to compile it
-package bookstore;
+//package bookstore;
 
 import java.awt.Font;
 import java.awt.Toolkit;
