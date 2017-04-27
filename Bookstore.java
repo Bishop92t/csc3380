@@ -24,7 +24,8 @@ import javax.swing.JTextField;
  * 
  *
  ***********************  TO DO LIST  **************************
- *	
+ *	make the display window smaller for error messages
+ *	fix spacing in book listing display
  */
 
 public class Bookstore {
