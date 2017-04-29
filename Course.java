@@ -19,12 +19,6 @@ public class Course {
     private Book[] books;
     private int numBooks = 0;
     
-// for reference here is the basic outline of each file
-//    CSC3380_1.txt           (department/course number/section file)
-//    80                    (number enrolled)
-//    9781680450262         (1st ISBN)
-//    9780201633610         (etc)
-    
     /**
      * Constructor for this course object. Intended for use only in Book constructor.
      * @param courseName string that the user has input
@@ -75,13 +69,7 @@ public class Course {
     		Bookstore.display(new String[] {"Invalid course: " + courseName, ""}, true);
     	}
     }
-    
-    
-    
-// ************************
-// Everything below this line is done
-// ************************
-            
+                
     /**
      * return number of students in the class
      * @return the number of students enrolled in this course

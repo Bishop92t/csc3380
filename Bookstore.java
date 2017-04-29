@@ -18,13 +18,7 @@ import javax.swing.JTextField;
 
 /**
  * @author Nathanael Bishop, Zachary Goad, Garret Aymond, Kevin Vo
- * CSC 3380 Group Project
- * 
- *
- * 
- *
- ***********************  TO DO LIST  **************************
- *	
+ * CSC 3380 Group Project	
  */
 
 public class Bookstore {
@@ -118,9 +112,6 @@ public class Bookstore {
     		bookListing = new String[books.length+1]; //one extra line required for headers
     		bookListing[0]="Book "+tab+tab+tab+tab+"In stock   "+tab+"Required  "+tab+"Need to order"+tab+"Cost of order";
     	}
-    	//if(books.length <= 1) {	//If a book was input
-    	//} else {	//else, since there are probably multiple books, we'll display the total order cost at the bottom
-    	//}
     	
         //iterate through the books[] and format the strings to be stored in bookListing[]
         for(int i=1; i<=books.length; i++) 

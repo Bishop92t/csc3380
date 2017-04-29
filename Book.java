@@ -22,14 +22,6 @@ public class Book {
     private Course[] courses;//array of Course objects 
     private int numCourses;  //number of courses in Course[] array
     
-// for reference here is the basic outline of each file
-//    9781680450262.txt                     (this is the ISBN)
-//	Design Patterns: Elements           (this is title)
-//	25                                  (number books in stock)
-//	55.95 		                    (cost of book)
-//	CSC1351_1                             (department/course#/section)
-//	CSC1350_2		                    (etc)
-    
     /**
      * constructor for this Book object
      * @param userInput the ISBN of the Book object
@@ -60,13 +52,6 @@ public class Book {
             Bookstore.display(new String[] {"No book found matching " + userInput}, true);
         }
     }
-
-    
-
-
-// ************************
-// Everything below this line is done
-// ************************
     
     public String getISBN() {
         return ISBN;
@@ -106,19 +91,6 @@ public class Book {
 			e.printStackTrace();
 		}
     	return true;
-    }
-    
-    /**
-     * Prints out all courses attached to the book. Currently only
-     * used for testing purposes.
-     * @return a string of courses
-     */
-    public String coursesString() {
-    	String s = "";
-    	for(int i = 0; i < numCourses; i++) {
-    		s += courses[i].getCourse() + "\n";
-    	}
-    	return s;
     }
     
     /**
