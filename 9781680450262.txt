@@ -1,5 +1,0 @@
-Design Patterns: Elements
-25
-55.95
-CSC1351_1
-CSC1350_2
