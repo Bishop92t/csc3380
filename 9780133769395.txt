@@ -1,0 +1,5 @@
+Starting Out With C++
+200
+175.00
+CSC1253_1
+CSC1253_2

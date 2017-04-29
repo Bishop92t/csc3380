@@ -1,4 +1,4 @@
-Generic Textbook
-80
-123.45
-CSC1351_1
+Design Patterns: Elements of Reusable Object Oriented Software
+50
+60.00
+CSC3380_1

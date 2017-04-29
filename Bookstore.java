@@ -111,7 +111,7 @@ public class Bookstore {
     		}
     		bookListing = new String[books.length + 2]; //two extra lines: headers and total cost
     		bookListing[0]="Book "+tab+tab+tab+tab+"In stock   "+tab+"Required  "+tab+"Need to order"+tab+"Cost of order";
-    		bookListing[books.length + 1] = "Total Order Cost:  " +tab+tab+tab+tab+tab+tab+tab+tab+tab+tab+tab+ new Course(userInput).getOrderTotal();
+    		bookListing[books.length + 1] = String.format("Total Order Cost:  " +tab+tab+tab+tab+tab+tab+tab+tab+tab+tab+tab+ "%.2f", new Course(userInput).getOrderTotal());
     	} else {      //else user is searching by book
             books = new Book[1];
             books[0] = new Book(userInput); //If a book was entered, use only that book
@@ -241,13 +241,13 @@ public class Bookstore {
         
         //pad the number of books in stock to left align
         if(book.NumberInStock()<10)         //1 character long
-            out+=Integer.toString(book.NumberInStock())+"     ";
+            out+=Integer.toString(book.NumberInStock())+"      ";
         else if(book.NumberInStock()<100)   //2 characters long
-            out+=Integer.toString(book.NumberInStock())+"    ";
+            out+=Integer.toString(book.NumberInStock())+"     ";
         else if(book.NumberInStock()<1000)  //3 characters long
-            out+=Integer.toString(book.NumberInStock())+"  ";
+            out+=Integer.toString(book.NumberInStock())+"   ";
         else if(book.NumberInStock()<10000) //4 characters long
-            out+=Integer.toString(book.NumberInStock())+" ";
+            out+=Integer.toString(book.NumberInStock())+"  ";
         out+=tab+tab;
         
         //pad the number of needed books to left align
